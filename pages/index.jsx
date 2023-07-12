@@ -21,10 +21,11 @@ export default function Home() {
       const data = await response.json();
 
       if (response.status !== 200) {
-        throw data.error || new Error(`Request failed with status ${response.status}`);
+        console.error(data.error || `Request failed with status ${response.status}`);
+        return;
       }
 
-      setCount(prev => prev + 1);
+      setResult(data.result);
       setAnimalInput('');
     } catch (err) {
       console.error(err);
