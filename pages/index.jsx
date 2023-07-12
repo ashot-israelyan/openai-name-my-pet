@@ -21,14 +21,14 @@ export default function Home() {
       const data = await response.json();
 
       if (response.status !== 200) {
-        console.error(data.error || `Request failed with status ${response.status}`);
-        return;
+        throw data.error || new Error(`Request failed with status ${response.status}`);
       }
 
       setResult(data.result);
       setAnimalInput('');
     } catch (err) {
       console.error(err);
+      alert(err.message);
     }
   }
 
